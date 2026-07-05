@@ -22,6 +22,7 @@ script.onload = () => {
 
     function renderQrCode(text) {
         hiddenQrContainer.innerHTML = '';
+        qrImage.classList.remove('is-real-qr');
 
         const qrGenerator = new QRCode(hiddenQrContainer, {
             text,
@@ -39,14 +40,18 @@ script.onload = () => {
             if (canvas) {
                 qrCanvas = canvas;
                 qrImage.src = canvas.toDataURL('image/png');
+                qrImage.classList.add('is-real-qr');
             } else if (img && img.src) {
                 qrCanvas = null;
                 qrImage.src = img.src;
+                qrImage.classList.add('is-real-qr');
             }
         }, 50);
     }
 
-    renderQrCode('https://example.com');
+    qrImage.src = 'image/fake-qr.png';
+    qrImage.classList.remove('is-real-qr');
+    qrCanvas = null;
 
     generateBtn.addEventListener('click', () => {
         const userUrl = inputField.value.trim();

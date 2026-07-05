@@ -108,6 +108,15 @@ main > .qr-section {
   object-fit: contain;
 }
 
+.generated-qr {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.generated-qr.is-real-qr {
+  opacity: 1;
+}
+
 .button-container{
   display: grid;
   display: grid;
