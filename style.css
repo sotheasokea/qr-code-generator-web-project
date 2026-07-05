@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #8c52ff 0%, #56c1e6 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+main {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Left Section */
+main > .input-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+h1 {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+input {
+  padding: 18px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: white;
+  color: #333;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+.generate-btn {
+  align-self: flex-start;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #2af5ff 0%, #a3ff66 100%);
+  color: #1a1a1a;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.generate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.generate-btn:active {
+  transform: translateY(0);
+}
+
+/* Right Section */
+main > .qr-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* QR Code Container */
+.qr-container {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.qr-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.button-container{
+  display: grid;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Action Buttons */
+.download-btn,
+.share-btn {
+  width: 100%;
+  max-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 24px;
+  border: 1px solid gray;
+  border-radius: 50px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-btn img,
+.share-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #f64949 0%, #f05959 100%);
+}
+
+.share-btn {
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+}
+
+.download-btn:hover,
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:active,
+.share-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .generate-btn {
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+  }
+
+  .download-btn,
+  .share-btn {
+    width: 100%;
+  }
+}
