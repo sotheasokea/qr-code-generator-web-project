@@ -8,6 +8,7 @@ script.onload = () => {
     const generateBtn = document.querySelector('.generate-btn');
     const qrImage = document.querySelector('.generated-qr');
     const downloadBtn = document.querySelector('.download-btn');
+    let qrCanvas = null;
 
     // Create an off-screen container so the QR library can render reliably on mobile browsers
     const hiddenQrContainer = document.createElement('div');
@@ -36,8 +37,10 @@ script.onload = () => {
             const img = hiddenQrContainer.querySelector('img');
 
             if (canvas) {
+                qrCanvas = canvas;
                 qrImage.src = canvas.toDataURL('image/png');
             } else if (img && img.src) {
+                qrCanvas = null;
                 qrImage.src = img.src;
             }
         }, 50);
@@ -60,12 +63,35 @@ script.onload = () => {
 
         if (currentImageSrc && !currentImageSrc.includes('fake-qr.png')) {
             const triggerLink = document.createElement('a');
+            triggerLink.style.display = 'none';
             triggerLink.download = 'gen-qr-code.png';
-            triggerLink.href = currentImageSrc;
 
-            document.body.appendChild(triggerLink);
-            triggerLink.click();
-            document.body.removeChild(triggerLink);
+            const fallbackDownload = () => {
+                triggerLink.href = currentImageSrc;
+                document.body.appendChild(triggerLink);
+                triggerLink.click();
+                setTimeout(() => document.body.removeChild(triggerLink), 100);
+            };
+
+            if (qrCanvas) {
+                qrCanvas.toBlob((blob) => {
+                    if (!blob) {
+                        fallbackDownload();
+                        return;
+                    }
+
+                    const objectUrl = URL.createObjectURL(blob);
+                    triggerLink.href = objectUrl;
+                    document.body.appendChild(triggerLink);
+                    triggerLink.click();
+                    setTimeout(() => {
+                        document.body.removeChild(triggerLink);
+                        URL.revokeObjectURL(objectUrl);
+                    }, 1000);
+                }, 'image/png');
+            } else {
+                fallbackDownload();
+            }
         } else {
             alert('Please generate a valid QR code before downloading!');
         }
