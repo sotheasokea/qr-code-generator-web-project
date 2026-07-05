@@ -1,6 +1,8 @@
 # QR Code Generator Web App
 
 A simple, client-side web application for generating QR codes from user-provided URLs.
+---
+**Live Demo**: https://qr-code-generator-eight-neon.vercel.app/
 
 ## Features
 - **Dynamic Generation:** Generates QR codes instantly in the browser using JavaScript.
